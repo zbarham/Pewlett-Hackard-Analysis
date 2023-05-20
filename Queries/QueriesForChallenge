@@ -1,0 +1,19 @@
+-- Additional query #1
+-- Create a retirement employees table to use for query 1 "retiring_emp"
+-- Run query to count potential retiring employees per department
+SELECT d.dept_name, COUNT(*) as retirement_count
+FROM retiring_emp re
+JOIN dept_emp de ON re.emp_no = de.emp_no
+JOIN departments d ON de.dept_no = d.dept_no
+WHERE de.to_date = '9999-01-01'
+GROUP BY d.dept_name
+ORDER BY retirement_count DESC;
+
+-- Additional query #2
+-- Run query to count potential mentors by title
+SELECT t.title, COUNT(*) as mentorship_count
+FROM mentorship_eligibility me
+JOIN titles t ON me.emp_no = t.emp_no
+WHERE t.to_date = '9999-01-01'
+GROUP BY t.title
+ORDER BY mentorship_count DESC;
